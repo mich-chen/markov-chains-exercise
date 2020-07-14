@@ -43,26 +43,27 @@ def make_chains(text_string):
 
     chains = {}
     words = text_string.split()
-    print(words, '\n')
+    # print(words, '\n')
 
+    # from 0 to len(words) - 2 to allow us to access index + 2
     for index in range(0, len(words) - 2):
+        # set key as a tuple of bigrams
         key = (words[index], words[index + 1])
         if key not in chains:
+            # check if key exists in dictionary
+            # if not then create new key and set value to following word
             chains[key] = [words[index + 2]]
+            
         else:
+            # if key does exist in dictionary already
+            # then append new following word into existing list of values
             chains[key].append(words[index + 2])
         
-        # .get(key, )
-    for key, value in chains.items():
-        print(key, ':', value)
-
-
-    
-
-    # your code goes here
-
-
-make_chains(open_and_read_file("green-eggs.txt"))
+    return chains
+       
+    # for key, value in chains.items():
+    #     print(key, ':', value)
+    # print(chains)
 
 
 def make_text(chains):
@@ -70,7 +71,7 @@ def make_text(chains):
 
     words = []
 
-    # your code goes here
+    
 
     return " ".join(words)
 
