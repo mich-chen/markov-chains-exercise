@@ -63,22 +63,82 @@ def make_chains(text_string):
        
     # for key, value in chains.items():
     #     print(key, ':', value)
-    # print(chains)
+    # # print(chains)
+
+
+# ('Would', 'you') : ['could', 'could', 'could', 'could', 'like', 'like']
+# ('you', 'could') : ['you', 'you', 'you', 'you']
+# ('could', 'you') : ['in', 'with', 'in', 'with']
+# ('you', 'in') : ['a', 'a']
+# ('in', 'a') : ['house?', 'box?']
+# ('a', 'house?') : ['Would']
+# ('house?', 'Would') : ['you']
+# ('you', 'with') : ['a', 'a']
+# ('with', 'a') : ['mouse?', 'fox?']
+# ('a', 'mouse?') : ['Would']
+# ('mouse?', 'Would') : ['you']
+# ('a', 'box?') : ['Would']
+# ('box?', 'Would') : ['you']
+# ('a', 'fox?') : ['Would']
+# ('fox?', 'Would') : ['you']
+# ('you', 'like') : ['green', 'them,']
+# ('like', 'green') : ['eggs']
+# ('green', 'eggs') : ['and']
+# ('eggs', 'and') : ['ham?']
+# ('and', 'ham?') : ['Would']
+# ('ham?', 'Would') : ['you']
+# ('like', 'them,') : ['Sam']
+# ('them,', 'Sam') : ['I']
+# ('Sam', 'I') : ['am?']
 
 
 def make_text(chains):
     """Return text from chains."""
+# need to turn keys or whatever into a list to iterate for choice()
+# loop
+# store list(chains.keys())
+# random.choice(^)
+#     words = []
+
+#     link1_str = f'{key1[0]}  {key1[1]} {value}'
 
     words = []
 
-    
-    bigram = random.choice(chains)
-    following_word = random.choice(chains[bigram])
-    link = bigram + following_word
-    words.append(link)
-    new_bigram = (bigram[1], random.choic(chain)[0])
-    following_word = random.choice(chains[new_bigram])
-    words.append(link)
+    list_keys = list(chains.keys())
+    key1 = random.choice(list_keys)
+    value1 = random.choice(chains[key1])
+    link1 = f'{key1[0]} {key1[1]} {value1}'
+    words.append(link1)
+
+
+    while key1 in chains:
+        new_key = link1.split(" ")[-2:]
+        new_key_tuple = tuple(new_key)
+        if new_key_tuple in chains.keys():
+            new_value = random.choice(chains[new_key_tuple])
+            words.append(new_value)
+            key1 = new_key_tuple
+            link1 = f'{new_key[0]} {new_key[1]} {new_value}'
+        else:
+            break
+ 
+
+    # bigram = 
+    # while bigram in chains:
+
+    # bigram = random.choice(chains)
+    # following_word = random.choice(chains[bigram])
+    # link = bigram + following_word
+    # words.append(link)
+
+    # new_bigram = (bigram[1], following_word)
+    # following_word2 = random.choice(chains[new_bigram])
+    # link2 = new_bigram + following_word2
+    # words.append(link2)
+
+    # for bigram, value in range(0, len(chains)):
+    #     link = [bigram, choice(chains.get(key))]
+    #     words.append(link)
     
     return " ".join(words)
 
