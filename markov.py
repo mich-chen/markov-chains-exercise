@@ -111,7 +111,6 @@ def make_text(chains):
     words = []
 
     list_keys = list(chains.keys())
-    # list of tuple keys
     key1 = random.choice(list_keys)
     value1 = random.choice(chains[key1])
     link1 = f'{" ".join(key1)} {value1}'
